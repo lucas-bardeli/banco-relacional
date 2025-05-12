@@ -15,23 +15,3 @@ USE banco;
 
 # MOSTRA TODAS AS TABELAS DO BANCO
 SHOW TABLES;
-
-#------------------------------------------------------------------------------------
-
-# CRIANDO TABELAS
-
-# CRIANDO A TABELA CLIENTE
-CREATE TABLE cliente (
-    cli_cpf INT PRIMARY KEY,
-    cli_nome VARCHAR(255) NOT NULL,
-    cli_rua VARCHAR(255) NOT NULL,
-    cli_numero INT NOT NULL,
-    cli_bairro VARCHAR(255) NOT NULL,
-    cli_telefone VARCHAR(11) NOT NULL
-);
-
-# MOSTRA AS CARACTERÍSTICAS DOS ATRIBUTOS DA TABELA
-DESCRIBRE cliente;
-
-# APAGA UMA TABELA
-DROP TABLE cliente;
