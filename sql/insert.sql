@@ -1,5 +1,5 @@
 
-# inserindo dados nas tabelas
+# Inserindo dados nas tabelas
 # DML - Data Manipulation Language
 
 # INSERT
@@ -15,8 +15,11 @@ INSERT
 INTO cliente (cli_cpf,cli_nome,cli_rua,cli_numero,cli_bairro,cli_telefone) 
 VALUES ("32111711111","Alberto","Rua Tal",123,"Nova Europa","14999999999");
 
+# Inserindo dados passando o código de cada categoria
 INSERT INTO categoria (cat_codigo,cat_nome) VALUES (2,"Camisa");
+
+# Inserindo dados sem o código, quando a chave primária é AUTO_INCREMENT
 INSERT INTO categoria (cat_nome) VALUES ("Camiseta");
-INSERT INTO categoria (cat_nome) VALUES ("Bermuda");
-INSERT INTO categoria (cat_nome) VALUES ("bermuda");
+INSERT INTO categoria (cat_nome) VALUES ("Bermuda"); # <- Vai dar erro se executar isso
+INSERT INTO categoria (cat_nome) VALUES ("bermuda"); # <- depois isso, pois é case sensitive, o nome é UNIQUE
 INSERT INTO categoria (cat_nome) VALUES ("Tenis");
