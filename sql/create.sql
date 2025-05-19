@@ -19,10 +19,57 @@ CREATE TABLE categoria (
 	cat_nome VARCHAR(255) NOT NULL UNIQUE
 );
 
+# CRIANDO A TABELA PRODUTO 
+CREATE TABLE produto (
+	prod_codigo INT PRIMARY KEY AUTO_INCREMENT,
+	prod_nome VARCHAR(255) NOT NULL UNIQUE, 
+	fk_prod_categoria INT NOT NULL,
+	prod_preco DECIMAL(5,2) NOT NULL
+);
+
+ALTER TABLE produto 
+ADD CONSTRAINT fk_categoria 
+FOREIGN KEY (fk_prod_categoria) 
+REFERENCES categoria(cat_codigo);
+
+# CRIANDO A TABELA PEDIDO 
+CREATE TABLE pedido (
+	ped_numero INT PRIMARY KEY AUTO_INCREMENT,
+	ped_data DATE NOT NULL,
+	fk_ped_cliente VARCHAR(11) NOT NULL
+);
+
+ALTER TABLE pedido 
+ADD CONSTRAINT fk_cliente 
+FOREIGN KEY (fk_ped_cliente) 
+REFERENCES cliente(cli_cpf);
+
+# CRIANDO A TABELA PEDIDO_PRODUTO 
+CREATE TABLE pedido_produto (
+	fk_pedido INT NOT NULL,
+	fk_produto INT NOT NULL
+);
+
+ALTER TABLE pedido_produto 
+ADD CONSTRAINT fk_pedido 
+FOREIGN KEY (fk_pedido) 
+REFERENCES pedido(ped_numero);
+
+ALTER TABLE pedido_produto 
+ADD CONSTRAINT fk_produto
+FOREIGN KEY (fk_produto) 
+REFERENCES produto(prod_codigo);
+
 # MOSTRA AS CARACTERÍSTICAS DOS ATRIBUTOS DA TABELA
 DESCRIBE cliente;
 DESCRIBE categoria;
+DESCRIBE produto;
+DESCRIBE pedido;
+DESCRIBE pedido_produto;
 
 # APAGA UMA TABELA
 DROP TABLE cliente;
 DROP TABLE categoria;
+DROP TABLE produto;
+DROP TABLE pedido;
+DROP TABLE pedido_produto;

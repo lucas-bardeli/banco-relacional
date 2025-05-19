@@ -23,3 +23,27 @@ INSERT INTO categoria (cat_nome) VALUES ("Camiseta");
 INSERT INTO categoria (cat_nome) VALUES ("Bermuda"); # <- Vai dar erro se executar isso
 INSERT INTO categoria (cat_nome) VALUES ("bermuda"); # <- depois isso, pois é case sensitive, o nome é UNIQUE
 INSERT INTO categoria (cat_nome) VALUES ("Tenis");
+
+# Inserindo dados na tabela produto
+INSERT INTO produto (prod_nome,fk_prod_categoria,prod_preco)
+VALUES ("Bermuda X",3,50.00);
+
+INSERT INTO produto (prod_nome, fk_prod_categoria, prod_preco)
+VALUES ("Meia X",4,10.00); # <- Erro
+
+INSERT INTO produto (prod_nome,fk_prod_categoria,prod_preco)
+VALUES ("Jaqueta X",NULL,50.00); # <- Erro
+
+INSERT INTO produto (prod_nome,fk_prod_categoria,prod_preco)
+VALUES ("Tenis X",3,50.00); # <- Criou um Tênis como uma bermuda, o banco permite, mas depende do usuário controlar isso
+
+# Inserindo dados na tabela pedido
+INSERT INTO pedido (ped_data, fk_ped_cliente)
+VALUES ("2025-05-19","1"); # <- Não existe cliente 1
+
+INSERT INTO pedido (ped_data, fk_ped_cliente)
+VALUES ("2025-05-19","32111711111");
+
+# Inserindo dados na tabela pedido_produto
+INSERT INTO pedido_produto (fk_pedido, fk_produto)
+VALUES (2,1);
