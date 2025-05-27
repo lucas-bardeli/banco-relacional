@@ -27,6 +27,38 @@ CREATE TABLE produto (
 	prod_preco DECIMAL(5,2) NOT NULL
 );
 
+# CRIANDO A TABELA PEDIDO 
+CREATE TABLE pedido (
+	ped_numero INT PRIMARY KEY AUTO_INCREMENT,
+	ped_data DATE NOT NULL,
+	fk_ped_cliente VARCHAR(11) NOT NULL
+);
+
+# CRIANDO A TABELA PEDIDO_PRODUTO 
+CREATE TABLE pedido_produto (
+	fk_pedido INT NOT NULL,
+	fk_produto INT NOT NULL
+);
+
+# CRIANDO TABELA MARCA
+CREATE TABLE marca (
+	mar_codigo INT PRIMARY KEY AUTO_INCREMENT,
+	mar_nome VARCHAR(255) NOT NULL UNIQUE
+);
+
+# CRIANDO TABELA TAMANHO
+CREATE TABLE tamanho (
+	tam_codigo INT PRIMARY KEY AUTO_INCREMENT,
+	tam_nome VARCHAR(255) NOT NULL UNIQUE
+);
+
+/*####################################################################################### 
+
+                                  Chave Extrangeira
+  Para os atributos Chave extrangeira, adiciona-los como Restrição de chave extrangeira
+
+########################################################################################*/
+
 ALTER TABLE produto 
 ADD CONSTRAINT fk_marca 
 FOREIGN KEY (fk_mar_codigo) 
@@ -42,42 +74,10 @@ ADD CONSTRAINT fk_categoria
 FOREIGN KEY (fk_prod_categoria) 
 REFERENCES categoria(cat_codigo);
 
-# MODIFICANDO O ATRIBUTO fk_prod_categoria
-ALTER TABLE produto MODIFY fk_prod_categoria INT NOT NULL;
-
-ALTER TABLE produto MODIFY prod_nome VARCHAR(255) NOT NULL;
-
-# TESTE DE INTEGRIDADE, ALTERANDO prod_preco
-ALTER TABLE produto MODIFY prod_preco DECIMAL(1,2) NOT NULL;
-
-# ADICIONANDO ATRIBUTO
-ALTER TABLE produto ADD prod_obs VARCHAR(255) NULL;
-ALTER TABLE produto ADD fk_tam_codigo INT NOT NULL;
-ALTER TABLE produto ADD fk_mar_codigo INT NOT NULL;
-
-ALTER TABLE produto DROP COLUMN fk_tam_codigo;
-ALTER TABLE produto DROP COLUMN fk_mar_codigo;
-
-# CRIANDO A TABELA PEDIDO 
-CREATE TABLE pedido (
-	ped_numero INT PRIMARY KEY AUTO_INCREMENT,
-	ped_data DATE NOT NULL,
-	fk_ped_cliente VARCHAR(11) NOT NULL
-);
-
 ALTER TABLE pedido 
 ADD CONSTRAINT fk_cliente 
 FOREIGN KEY (fk_ped_cliente) 
 REFERENCES cliente(cli_cpf);
-
-ALTER TABLE pedido ADD ped_obs VARCHAR(255) NULL;
-ALTER TABLE pedido ADD ped_status TINYINT(1) NOT NULL;
-
-# CRIANDO A TABELA PEDIDO_PRODUTO 
-CREATE TABLE pedido_produto (
-	fk_pedido INT NOT NULL,
-	fk_produto INT NOT NULL
-);
 
 ALTER TABLE pedido_produto 
 ADD CONSTRAINT fk_pedido 
@@ -89,20 +89,46 @@ ADD CONSTRAINT fk_produto
 FOREIGN KEY (fk_produto) 
 REFERENCES produto(prod_codigo);
 
+/*####################################################################################### 
+
+                               Modificando Atributos já criados
+     Utilização do MODIFY com ALTER TABLE para modificar características de Atributos
+     
+########################################################################################*/
+
+# MODIFICANDO O ATRIBUTO fk_prod_categoria
+ALTER TABLE produto MODIFY fk_prod_categoria INT NOT NULL;
+
+ALTER TABLE produto MODIFY prod_nome VARCHAR(255) NOT NULL;
+
+# TESTE DE INTEGRIDADE, ALTERANDO prod_preco
+ALTER TABLE produto MODIFY prod_preco DECIMAL(1,2) NOT NULL;
+
+/*####################################################################################### 
+
+                               Adicionando novo Atributo
+                     Adicionando um novo atributo a uma tabela
+                     
+########################################################################################*/
+
+ALTER TABLE produto ADD prod_obs VARCHAR(255) NULL;
+ALTER TABLE produto ADD fk_tam_codigo INT NOT NULL;
+ALTER TABLE produto ADD fk_mar_codigo INT NOT NULL;
+
+ALTER TABLE produto DROP COLUMN fk_tam_codigo;
+ALTER TABLE produto DROP COLUMN fk_mar_codigo;
+
+ALTER TABLE pedido ADD ped_obs VARCHAR(255) NULL;
+ALTER TABLE pedido ADD ped_status TINYINT(1) NOT NULL;
+
 ALTER TABLE pedido_produto ADD cli_nome VARCHAR(255) NOT NULL;
 
-# APAGANDO UM ATRIBUTO
-# ELIMINA TODOS OS REGISTROS
+/*####################################################################################### 
+
+                               Removendo um Atributo
+                      Removendo um Atributo de uma tabela
+                      
+########################################################################################*/
+
 ALTER TABLE pedido_produto DROP COLUMN nome_cliente;
-
-# CRIANDO TABELA MARCA
-CREATE TABLE marca (
-	mar_codigo INT PRIMARY KEY AUTO_INCREMENT,
-	mar_nome VARCHAR(255) NOT NULL UNIQUE
-);
-
-# CRIANDO TABELA TAMANHO
-CREATE TABLE tamanho (
-	tam_codigo INT PRIMARY KEY AUTO_INCREMENT,
-	tam_nome VARCHAR(255) NOT NULL UNIQUE
-);
+ALTER TABLE pedido DROP COLUMN ped_status;

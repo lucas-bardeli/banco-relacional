@@ -1,6 +1,6 @@
 
-# Selecionando dados das tabelas
-# * -> todos os dados
+# Selecionar todos os registros da tabela (todos os registros com todos os atributos da tabela)
+# O * significa TUDO
 SELECT * FROM cliente;
 SELECT * FROM categoria;
 SELECT * FROM produto;
