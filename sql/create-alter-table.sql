@@ -11,6 +11,17 @@ CREATE TABLE cliente (
 	cli_telefone VARCHAR(11) NOT NULL
 );
 
+# CRIANDO A TABELA USUÁRIO
+CREATE TABLE usuario (
+	usu_codigo INT PRIMARY KEY AUTO_INCREMENT,
+	usu_nome VARCHAR(255) NOT NULL,
+	usu_email VARCHAR(255) NOT NULL UNIQUE,
+	usu_senha CHAR(12) NOT NULL,
+	usu_idade INT NOT NULL,
+	CHECK(CHAR_LENGTH(usu_senha)=12),
+	CHECK(usu_idade>=18)
+);
+
 # CRIANDO A TABELA CATEGORIA
 # CHAVE PRIMÁRIA, AUTO INCREMENTE OS VALORES
 # NOME DA CATEGORIA É UNICO, NÃO DEIXA DUPLICAR NOME DE CATEGORIA
@@ -37,7 +48,11 @@ CREATE TABLE pedido (
 # CRIANDO A TABELA PEDIDO_PRODUTO 
 CREATE TABLE pedido_produto (
 	fk_pedido INT NOT NULL,
-	fk_produto INT NOT NULL
+	fk_produto INT NOT NULL,
+	ped_prod_valor DECIMAL(5,2) NOT NULL,
+	ped_prod_quantidade INT NOT NULL
+	CHECK(ped_prod_valor>0),
+	CHECK(ped_prod_quantidade>0)
 );
 
 # CRIANDO TABELA MARCA

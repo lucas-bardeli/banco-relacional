@@ -15,6 +15,23 @@ INSERT
 INTO cliente (cli_cpf,cli_nome,cli_rua,cli_numero,cli_bairro,cli_telefone) 
 VALUES ("32111711111","Alberto","Rua Tal",123,"Nova Europa","14999999999");
 
+# Inserindo dados na tabela usuário
+INSERT 
+INTO usuario (usu_nome,usu_email,usu_senha)
+VALUES ("José da Silva","josedasilva@gmail.com","MinhaSenha12");
+
+INSERT 
+INTO usuario (usu_nome,usu_email,usu_senha)
+VALUES ("Josenilda da Silva","josenildadasilva@gmail.com","1");
+
+INSERT 
+INTO usuario (usu_nome,usu_email,usu_senha,usu_idade)
+VALUES ("Teste idade","idade@gmail.com","MinhaSenha12",18);
+
+INSERT 
+INTO usuario (usu_nome,usu_email,usu_senha,usu_idade)
+VALUES ("Teste idade","idade2@gmail.com","MinhaSenha12",13);
+
 # Inserindo dados passando o código de cada categoria
 INSERT INTO categoria (cat_codigo,cat_nome) VALUES (2,"Camisa");
 
@@ -57,6 +74,18 @@ VALUES ("2025-05-19","32111711111");
 # Inserindo dados na tabela pedido_produto
 INSERT INTO pedido_produto (fk_pedido, fk_produto)
 VALUES (2,1);
+
+INSERT
+INTO pedido_produto (fk_pedido, fk_produto, ped_prod_valor, ped_prod_quantidade)
+VALUES (1,100,0,2);
+
+INSERT
+INTO pedido_produto (fk_pedido, fk_produto, ped_prod_valor, ped_prod_quantidade)
+VALUES (2,100,100,0);
+
+INSERT
+INTO pedido_produto (fk_pedido, fk_produto, ped_prod_valor, ped_prod_quantidade)
+VALUES (2,100,100,1);
 
 -- Inserção de 20 clientes na tabela cliente
 INSERT INTO cliente (cli_cpf, cli_nome, cli_rua, cli_numero, cli_bairro, cli_telefone) VALUES

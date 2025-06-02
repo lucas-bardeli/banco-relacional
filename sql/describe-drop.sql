@@ -7,6 +7,7 @@ DESCRIBE pedido;
 DESCRIBE pedido_produto;
 DESCRIBE marca;
 DESCRIBE tamanho;
+DESCRIBE usuario;
 
 # CUIDADO !
 # APAGA UMA TABELA
@@ -17,3 +18,4 @@ DROP TABLE pedido;
 DROP TABLE pedido_produto;
 DROP TABLE marca;
 DROP TABLE tamanho;
+DROP TABLE usuario;

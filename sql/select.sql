@@ -6,6 +6,9 @@ SELECT * FROM categoria;
 SELECT * FROM produto;
 SELECT * FROM pedido;
 SELECT * FROM pedido_produto;
+SELECT * FROM marca;
+SELECT * FROM tamanho;
+SELECT * FROM usuario;
 
 # Seleciona todos os clientes, mas somente os atributos cpf, nome e telefone
 SELECT cli_cpf, cli_nome, cli_telefone 
