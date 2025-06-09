@@ -10,6 +10,22 @@ SELECT * FROM marca;
 SELECT * FROM tamanho;
 SELECT * FROM usuario;
 
+# A função COUNT() retorna o número de linhas que correspondem a um critério especificado
+SELECT COUNT(*) FROM produto;
+
+# O comando AS é usado para renomear uma coluna ou tabela com um apelido
+# O apelido só existe enquanto durar a consulta
+SELECT prod_codigo AS "Código",
+prod_nome AS "Nome do produto",
+prod_preco AS "Preço unitário"
+FROM produto;
+
+# O operador IN permite que você especifique vários valores em uma cláusula WHERE
+SELECT * FROM produto
+WHERE prod_codigo IN (3,15);
+
+SELECT * FROM produto WHERE prod_preco IN (34.90,69.90);
+
 # Seleciona todos os clientes, mas somente os atributos cpf, nome e telefone
 SELECT cli_cpf, cli_nome, cli_telefone 
 FROM cliente;
