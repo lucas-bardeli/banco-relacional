@@ -1,0 +1,2 @@
+# Faz com que SQL seja considerada como uma linguagem no repositório
+*.sql linguist-detectable=true
