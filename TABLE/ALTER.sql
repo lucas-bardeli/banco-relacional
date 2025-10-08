@@ -4,8 +4,13 @@ ALTER TABLE nome_tabela
 ADD COLUMN nome_coluna tipo_dados [restrições];
 
 -- Troca o nome de uma coluna:
+-- Precisa especificar novamente o tipo e as restrições
 ALTER TABLE nome_tabela
 CHANGE COLUMN nome_antigo nome_novo tipo_dados [restrições];
+
+-- Se quiser mudar só o nome, sem reespecificar o tipo
+ALTER TABLE nome_tabela
+RENAME COLUMN nome_antigo TO nome_novo;
 
 -- Modificar uma coluna:
 ALTER TABLE nome_tabela
